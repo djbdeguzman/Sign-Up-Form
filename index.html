@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-container">
+                    <div class="input-container" id="password-container">
                         <div>
                             <div>
                                 <label for="password">Password</label>
@@ -97,14 +97,17 @@
             let password = document.getElementById('password').value;
             let confirmPassword = document.getElementById('confirmPassword').value;
             const errorMessage = document.querySelector('.error-text');
+            const passwordContainer= document.getElementById('password-container');
             const submitButton = document.getElementById('submit')
 
             if(password === confirmPassword) {
                 errorMessage.style.color="transparent";
                 submitButton.disabled=false;
+                passwordContainer.classList.remove('error');
             } else {
                 submitButton.disabled=true;
                 errorMessage.style.color="red";
+                passwordContainer.classList.add('error');
             }
         }
     </script>
