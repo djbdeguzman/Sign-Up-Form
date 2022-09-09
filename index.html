@@ -21,7 +21,7 @@
                 </h2>
             </div>
             <div class="form-container-main">
-                <form action="#" method="GET" class="form-container pad-l-1 m-b">
+                <form name="signup-form" action="results.html" onsubmit="validateForm()" method="GET" class="form-container pad-l-1 m-b" id="signup-form">
                     <div class="form-header">
                         <h2 class="form-header m-b">Let's do this!</h2>
                     </div>
@@ -67,22 +67,22 @@
                                 <label for="password">Password</label>
                             </div>
                             <div>
-                                <input type="password" name="password" required></input>
+                                <input type="password" name="password" id="password" required onkeyup="validateForm()"></input>
                             </div>
                             <p class="error-text">*passwords do not match</p>
                         </div>
                         <div>
                             <div>
-                                <label for="password">Confirm Password</label>
+                                <label for="confirmPassword">Confirm Password</label>
                             </div>
                             <div>
-                                <input type="password" id="lastname" name="password" required></input>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required onkeyup="validateForm()"></input>
                             </div>
                         </div>
                     </div>
                     <div class="btn">
                         <button type="reset">Reset</button>
-                        <button type="submit">Create Account</button>
+                        <button type="submit" id="submit">Create Account</button>
                     </div>
                 </form>
                 
@@ -90,5 +90,23 @@
             </div>
         </div>
     </div>
+
+    <script> 
+    /* this script will check password every key up, if the password and confirm password is not the same, the submit button will not work. */
+        function validateForm() {
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('confirmPassword').value;
+            const errorMessage = document.querySelector('.error-text');
+            const submitButton = document.getElementById('submit')
+
+            if(password === confirmPassword) {
+                errorMessage.style.color="transparent";
+                submitButton.disabled=false;
+            } else {
+                submitButton.disabled=true;
+                errorMessage.style.color="red";
+            }
+        }
+    </script>
 </body>
 </html>
